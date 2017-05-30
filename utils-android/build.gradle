@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+def version = '0.0.1'
 
 android {
     compileSdkVersion 25
@@ -16,6 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+publish {
+    groupId = 'su.ias.components'
+    artifactId = 'utils-android'
+    publishVersion = "$version"
+    repoName = 'maven'
+    desc = 'utils for Android development'
+    licences = ['MIT']
+    website = 'https://github.com/interactiveservices/utils-android'
 }
 
 dependencies {
