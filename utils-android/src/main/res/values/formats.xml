@@ -1,0 +1,3 @@
+<resources>
+    <string name="format_concat_number_string" formatted="false">%d %s</string>
+</resources>

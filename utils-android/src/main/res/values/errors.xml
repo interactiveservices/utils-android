@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_dont_have_needed_app">Извините, у вас не установлено подходящего приложения для открытия ссылки</string>
+    <string name="error_dont_have_call_app">Извините, у вас не установлено приложение для звонков</string>
+</resources>

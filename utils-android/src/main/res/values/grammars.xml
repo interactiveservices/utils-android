@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photo_singular">фотография</string>
+    <string name="photo_plural">фотографии</string>
+    <string name="photo_accusative">фотографий</string>
+
+    <string name="month_singular">месяц</string>
+    <string name="month_plural">месяца</string>
+    <string name="month_accusative">месяцев</string>
+
+    <string name="day_singular">день</string>
+    <string name="day_plural">дня</string>
+    <string name="day_accusative">дней</string>
+
+    <string name="hour_singular">час</string>
+    <string name="hour_plural">часа</string>
+    <string name="hour_accusative">часов</string>
+
+    <string name="minute_singular">минута</string>
+    <string name="minute_plural">минуты</string>
+    <string name="minute_accusative">минут</string>
+
+    <string name="second_singular">секунда</string>
+    <string name="second_plural">секунды</string>
+    <string name="second_accusative">секунд</string>
+</resources>
