@@ -23,11 +23,11 @@ public final class UiUtils {
     /**
      * This method converts dp unit to equivalent pixels, depending on device density.
      *
-     * @param dp      A value in dp (density independent pixels) unit. Which we need to convert into pixels
      * @param context Context to get resources and device specific display metrics
+     * @param dp      A value in dp (density independent pixels) unit. Which we need to convert into pixels
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float dpToPixel(float dp, Context context) {
+    public static float dpToPixel(Context context, float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -37,11 +37,11 @@ public final class UiUtils {
     /**
      * This method converts device specific pixels to density independent pixels.
      *
-     * @param px      A value in px (pixels) unit. Which we need to convert into db
      * @param context Context to get resources and device specific display metrics
+     * @param px      A value in px (pixels) unit. Which we need to convert into db
      * @return A float value to represent dp equivalent to px value
      */
-    public static float pixelsToDp(float px, Context context) {
+    public static float pixelsToDp(Context context, float px) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -53,8 +53,8 @@ public final class UiUtils {
      *
      * @param colorId - собственно цвет
      */
-    public static void setStatusBarColor(Activity activity, @ColorRes int colorId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    public static void setStatusBarColor(@Nullable Activity activity, @ColorRes int colorId) {
+        if (activity != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(activity, colorId));
@@ -112,7 +112,7 @@ public final class UiUtils {
      * @param activity активность, которому меняем работу клавиатуры
      * @param mode     каким образом активность работает с клавиатурой
      */
-    public static void setSoftInputMode(Activity activity, int mode) {
+    public static void setSoftInputMode(@Nullable Activity activity, int mode) {
         if (activity != null) {
             activity.getWindow().setSoftInputMode(mode);
         }

@@ -24,6 +24,13 @@ import java.io.Serializable;
 
 public final class AnimUtils {
 
+    /**
+     * Анимация плавного перемещения view слева направо
+     *
+     * @param context  контекст
+     * @param view     перемещаемое view
+     * @param duration длительность анимации в миллисекундах
+     */
     public static void leftToRight(final Context context, final View view, final long duration) {
         view.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -47,6 +54,13 @@ public final class AnimUtils {
         });
     }
 
+    /**
+     * Анимация плавного перемещения view справа налево
+     *
+     * @param context  контекст
+     * @param view     перемещаемое view
+     * @param duration длительность анимации в миллисекундах
+     */
     public static void rightToLeft(final Context context,
                                    final View view,
                                    final Dismissible.OnDismissedListener listener,
@@ -74,6 +88,15 @@ public final class AnimUtils {
         view.startAnimation(anim);
     }
 
+    /**
+     * Анимация "кругового" появления view
+     *
+     * @param context        контекст
+     * @param view           появляемая view
+     * @param revealSettings настройки анимации
+     * @param startColor     начальный цвет фона view
+     * @param endColor       конечный цвет фона view
+     */
     public static void circularReveal(final Context context,
                                       final View view,
                                       final RevealAnimationSetting revealSettings,
