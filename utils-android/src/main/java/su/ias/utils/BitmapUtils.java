@@ -48,8 +48,9 @@ public final class BitmapUtils {
 
     /**
      * Изменение размера изображения
-     * @param bm bitmap
-     * @param newWidth новая ширина изображения, в пикселях
+     *
+     * @param bm        bitmap
+     * @param newWidth  новая ширина изображения, в пикселях
      * @param newHeight новая высота изображения, в пикселях
      * @return
      */
@@ -64,28 +65,39 @@ public final class BitmapUtils {
         matrix.postScale(scaleWidth, scaleHeight);
 
         // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
     }
 
+    /**
+     * Отрисовывает изображение определенным цветом
+     *
+     * @param bitmap bitmap, над которым будет происходить цветовое отрисовывание
+     * @param color  цвет отрисовки
+     */
     public static Bitmap setBitmapTint(Bitmap bitmap, @ColorInt int color) {
         Paint paint = new Paint();
         paint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-        Bitmap bitmapResult = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap bitmapResult =
+                Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapResult);
         canvas.drawBitmap(bitmap, 0, 0, paint);
         return bitmapResult;
     }
 
+    /**
+     * Получение объекта Bitmap из Drawable из ресурсов
+     */
     public static Bitmap getBitmapFromDrawable(Context context, @DrawableRes int drawableId) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);
 
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         } else if (drawable instanceof VectorDrawable || drawable instanceof VectorDrawableCompat) {
-            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                                                drawable.getIntrinsicHeight(),
+                                                Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
             drawable.draw(canvas);

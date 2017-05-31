@@ -17,9 +17,9 @@ public class GrammarUtils {
      * @return идентификатор строки в верном склонении
      */
     private static int getCaseIdByNumber(int number,
-                                        @StringRes int idSingular,
-                                        @StringRes int idPlural,
-                                        @StringRes int idAccusativeCase) {
+                                         @StringRes int idSingular,
+                                         @StringRes int idPlural,
+                                         @StringRes int idAccusativeCase) {
         int mod10 = number % 10;
         int mod100 = number % 100;
         if (1 == mod10 && 11 != mod100) {
@@ -43,60 +43,87 @@ public class GrammarUtils {
      * @return идентификатор строки в верном склонении
      */
     public static String getCaseByNumber(Context context,
-                                           int number,
-                                           @StringRes int idSingular,
-                                           @StringRes int idPlural,
-                                           @StringRes int idAccusativeCase) {
-        String caseString = context.getString(getCaseIdByNumber(number, idSingular, idPlural, idAccusativeCase));
+                                         int number,
+                                         @StringRes int idSingular,
+                                         @StringRes int idPlural,
+                                         @StringRes int idAccusativeCase) {
+        String caseString = context.getString(getCaseIdByNumber(number,
+                                                                idSingular,
+                                                                idPlural,
+                                                                idAccusativeCase));
         return context.getString(R.string.format_concat_number_string, number, caseString);
     }
 
+    /**
+     * Нужное склонение для слова "фотография". Строка возвращается вместе с числом,
+     * например, "8 фотографий".
+     */
     public static String getPhotoCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.photo_singular,
-                                 R.string.photo_plural,
-                                 R.string.photo_accusative);
+                               number,
+                               R.string.photo_singular,
+                               R.string.photo_plural,
+                               R.string.photo_accusative);
     }
 
+    /**
+     * Нужное склонение для слова "месяц". Строка возвращается вместе с числом,
+     * например, "8 месяцев".
+     */
     public static String getMonthCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.month_singular,
-                                 R.string.month_plural,
-                                 R.string.month_accusative);
+                               number,
+                               R.string.month_singular,
+                               R.string.month_plural,
+                               R.string.month_accusative);
     }
 
+    /**
+     * Нужное склонение для слова "день". Строка возвращается вместе с числом,
+     * например, "8 дней".
+     */
     public static String getDayCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.day_singular,
-                                 R.string.day_plural,
-                                 R.string.day_accusative);
+                               number,
+                               R.string.day_singular,
+                               R.string.day_plural,
+                               R.string.day_accusative);
     }
 
+    /**
+     * Нужное склонение для слова "час". Строка возвращается вместе с числом,
+     * например, "8 часов".
+     */
     public static String getHourCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.hour_singular,
-                                 R.string.hour_plural,
-                                 R.string.hour_accusative);
+                               number,
+                               R.string.hour_singular,
+                               R.string.hour_plural,
+                               R.string.hour_accusative);
     }
 
+    /**
+     * Нужное склонение для слова "минута". Строка возвращается вместе с числом,
+     * например, "8 минут".
+     */
     public static String getMinuteCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.minute_singular,
-                                 R.string.minute_plural,
-                                 R.string.minute_accusative);
+                               number,
+                               R.string.minute_singular,
+                               R.string.minute_plural,
+                               R.string.minute_accusative);
     }
 
+    /**
+     * Нужное склонение для слова "секунда". Строка возвращается вместе с числом,
+     * например, "8 секунд".
+     */
     public static String getSecondCaseByNumber(Context context, int number) {
         return getCaseByNumber(context,
-                                 number,
-                                 R.string.second_singular,
-                                 R.string.second_plural,
-                                 R.string.second_accusative);
+                               number,
+                               R.string.second_singular,
+                               R.string.second_plural,
+                               R.string.second_accusative);
     }
 
 }

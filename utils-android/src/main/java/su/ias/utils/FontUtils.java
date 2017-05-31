@@ -21,8 +21,9 @@ public class FontUtils {
 
     /**
      * Настройка работы со знаком рубля в текущем тексте
+     *
      * @param textView textView, где нужно отобразить знак рубля
-     * @param text текст
+     * @param text     текст
      */
     public static void setupRubleSign(@Nullable TextView textView, @Nullable String text) {
         if (textView == null || TextUtils.isEmpty(text)) {
@@ -34,6 +35,12 @@ public class FontUtils {
         }
     }
 
+    /**
+     * Показывает текст HTML в TextView, соблюдая совместимость с разными версиями Android
+     *
+     * @param textView необходимый TextView
+     * @param text     текст в виде HTML
+     */
     public static void htmlCompat(@Nullable TextView textView, @Nullable String text) {
         if (textView != null) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
@@ -45,6 +52,12 @@ public class FontUtils {
         }
     }
 
+    /**
+     * Получение Typeface из шрифта, который лежит в assets/fonts
+     *
+     * @param context  контекст
+     * @param fontName имя шрифта, например, "Roboto-Regular.ttf"
+     */
     public static Typeface getFont(Context context, String fontName) {
 
         if (fonts.containsKey(fontName)) {
