@@ -32,8 +32,10 @@ public class IntentUtils {
     public static void openAppInMarket(Context context, @Nullable String appPackageName) {
         if (!TextUtils.isEmpty(appPackageName)) {
             try {
-                context.startActivity(new Intent(Intent.ACTION_VIEW,
-                                                 Uri.parse("market://details?id=" + appPackageName)));
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                                           Uri.parse("market://details?id=" + appPackageName));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             } catch (android.content.ActivityNotFoundException anfe) {
                 openUrl(context, "https://play.google.com/store/apps/details?id=" + appPackageName);
             }
@@ -186,6 +188,8 @@ public class IntentUtils {
         if (context != null) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             if (addresses != null && addresses.length > 0) {
                 intent.putExtra(Intent.EXTRA_EMAIL, addresses);
             }
