@@ -182,7 +182,7 @@ public class IntentUtils {
     public static void sendEmail(@Nullable Context context,
                                  @Nullable String[] addresses,
                                  @Nullable String subject,
-                                 @Nullable String text) {
+                                 @Nullable CharSequence text) {
         if (context != null) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:")); // only email apps should handle this
