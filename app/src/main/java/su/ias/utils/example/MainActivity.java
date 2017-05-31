@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btnWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.openWebPage(MainActivity.this, URL);
+                IntentUtils.openUrl(MainActivity.this, URL);
             }
         });
 
