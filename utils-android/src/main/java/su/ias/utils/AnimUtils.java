@@ -286,16 +286,26 @@ public final class AnimUtils {
 
     /**
      * Анимация прозрачного перехода между двумя view
-     * @param inView view, которая будет показана после завершения анимации
-     * @param outView view, которая будет исчезать
+     *
+     * @param inView   view, которая будет показана после завершения анимации
+     * @param outView  view, которая будет исчезать
      * @param duration длительность анимации
      */
-    public static void crossfade(View inView, View outView, long duration) {
-        outView.setVisibility(View.VISIBLE);
+    public static void crossfade(final View inView, final View outView, final long duration) {
+        inView.setAlpha(0f);
         inView.setVisibility(View.VISIBLE);
-        alpha(outView, 1f, 0f, duration);
-        alpha(inView, 0f, 1f, duration);
-        outView.setVisibility(View.GONE);
+
+        inView.animate().alpha(1f).setDuration(duration).setListener(null);
+
+        outView.animate()
+                .alpha(0f)
+                .setDuration(duration)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        outView.setVisibility(View.GONE);
+                    }
+                });
     }
 
     public interface Dismissible {
