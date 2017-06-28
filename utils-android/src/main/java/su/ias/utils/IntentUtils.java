@@ -11,7 +11,12 @@ import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+@SuppressWarnings("unused")
 public class IntentUtils {
+
+    public IntentUtils() {
+        throw new AssertionError();
+    }
 
     /**
      * Открыть страницу приложения в GooglePlay
@@ -261,6 +266,7 @@ public class IntentUtils {
             }
         }
     }
+
 
     public interface IntentNotFoundCallback {
         void onNotFound();

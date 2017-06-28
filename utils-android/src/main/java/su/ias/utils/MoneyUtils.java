@@ -14,6 +14,10 @@ public class MoneyUtils {
     public static final String RUBLE_SIGN = "&#8381;";
     public static final String NBSP = "&nbsp;";
 
+    public MoneyUtils() {
+        throw new AssertionError();
+    }
+
     /**
      * Отображает стоимость в текстовом поле вида "1 400 ₽".
      * Метод делает всю работу по отображению знака рубля и приведению числа к нужному формату

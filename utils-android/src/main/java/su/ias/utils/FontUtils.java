@@ -19,6 +19,10 @@ public class FontUtils {
 
     private final static Map<String, Typeface> fonts = new HashMap<>();
 
+    public FontUtils() {
+        throw new AssertionError();
+    }
+
     /**
      * Настройка работы со знаком рубля в текущем тексте
      *

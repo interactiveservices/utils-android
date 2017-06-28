@@ -21,6 +21,10 @@ import android.support.v4.content.ContextCompat;
 
 public final class BitmapUtils {
 
+    public BitmapUtils() {
+        throw new AssertionError();
+    }
+
     /**
      * Комбинирует два изображения в одно. Рисует второе изображение поверх первого, центруя его
      *

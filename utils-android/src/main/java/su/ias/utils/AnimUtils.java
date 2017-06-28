@@ -24,6 +24,10 @@ import java.io.Serializable;
 
 public final class AnimUtils {
 
+    public AnimUtils() {
+        throw new AssertionError();
+    }
+
     /**
      * Анимация плавного перемещения view слева направо
      *

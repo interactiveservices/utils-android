@@ -5,6 +5,10 @@ import android.support.annotation.StringRes;
 
 public class GrammarUtils {
 
+    public GrammarUtils() {
+        throw new AssertionError();
+    }
+
     /**
      * Выбирает нужное склонение существительного, в зависимости от числа
      * Например: 1 фотография, но 2 фотографии
