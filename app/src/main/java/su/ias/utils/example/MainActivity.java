@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final TextView txtCost = (TextView) findViewById(R.id.txt_cost);
-        MoneyUtils.inflateTextViewWithCost(txtCost, 1500000d);
+        MoneyUtils.inflateTextViewWithCost(txtCost, -1500000d);
         AnimUtils.rotate(txtCost, 0, 360, 2000);
 
         final TextView txtCases = (TextView) findViewById(R.id.txt_cases);

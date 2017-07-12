@@ -26,7 +26,7 @@ public class MoneyUtils {
      * @param cost     стоимость, которая будет форматироваться
      */
     public static void inflateTextViewWithCost(@Nullable TextView textView, @Nullable Double cost) {
-        FontUtils.setupRubleSign(textView, MoneyUtils.formatRubles(cost));
+        FontUtils.setupRubleSign(textView, MoneyUtils.formatRublesNoRound(cost));
     }
 
     /**
@@ -38,14 +38,11 @@ public class MoneyUtils {
      */
     @Nullable
     public static String formatRubles(@Nullable Double cost) {
-        int intCost = 0;
-        if (cost != null) {
-            intCost = cost.intValue();
-        } else {
+        if (cost == null) {
             return null;
         }
-        String formattedCost = formatNumber(intCost);
-        return formattedCost + NBSP + RUBLE_SIGN;
+        cost = (double)cost.intValue();
+        return formatNumber(cost) + NBSP + RUBLE_SIGN;
     }
 
     /**
@@ -53,12 +50,36 @@ public class MoneyUtils {
      *
      * @param cost число, которое форматируется
      */
-    public static String formatNumber(@NonNull Integer cost) {
-        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-        DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
-        symbols.setGroupingSeparator(' ');
-        formatter.setDecimalFormatSymbols(symbols);
-        // возвращаем форматированную строку с разделителем - неразрывным пробелом
-        return formatter.format(cost).replace(" ", NBSP);
+    public static String formatNumber(@NonNull Double cost) {
+
+        DecimalFormat myFormatter = new DecimalFormat("#,###.00");
+        if (cost % 1 == 0)
+            myFormatter = new DecimalFormat("#,###");
+        DecimalFormatSymbols formatSymbols = DecimalFormatSymbols.getInstance();
+        formatSymbols.setDecimalSeparator(',');
+        formatSymbols.setGroupingSeparator(' ');
+        formatSymbols.setMinusSign('-');
+        myFormatter.setDecimalFormatSymbols(formatSymbols);
+        myFormatter.setNegativePrefix("- ");
+
+        return myFormatter.format(cost).replace(" ", NBSP);
+
+    }
+
+    /**
+     * Формирует строку - unicode вида "- 1 400.10 ₽" или "1 400 ₽".
+     * Строку потом необходимо обрабатывать FontUtils.setupRubleSign для корректного отображения знака рубля
+     *
+     * @param cost стоимость
+     * @return строка вида "- 1 400.10 ₽" или null
+     */
+    @Nullable
+    public static String formatRublesNoRound(@Nullable Double cost) {
+
+        if (cost == null) {
+            return null;
+        }
+
+        return formatNumber(cost) + NBSP + RUBLE_SIGN;
     }
 }
