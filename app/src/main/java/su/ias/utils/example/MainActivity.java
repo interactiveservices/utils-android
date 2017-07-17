@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button btnSettings = (Button) findViewById(R.id.btn_settings);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.openAppDetailsActivity(MainActivity.this);
+            }
+        });
+
         final TextView txtCost = (TextView) findViewById(R.id.txt_cost);
         MoneyUtils.inflateTextViewWithCost(txtCost, -1500000d);
         AnimUtils.rotate(txtCost, 0, 360, 2000);

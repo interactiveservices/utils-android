@@ -4,4 +4,5 @@
     <string name="error_dont_have_call_app">Извините, у вас не установлено приложение для звонков</string>
     <string name="error_dont_have_email_app">Извините, у вас не установлено почтовых приложений</string>
     <string name="error_dont_have_sms_app">Извините, у вас не установлено приложений для СМС</string>
+    <string name="error_cant_open_app_settings">Извините, не удалось открыть информацию о приложении</string>
 </resources>

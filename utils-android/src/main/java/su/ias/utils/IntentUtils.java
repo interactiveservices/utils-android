@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
@@ -267,6 +268,27 @@ public class IntentUtils {
         }
     }
 
+    /**
+     * Открыть настройки приложения (экрен "Информация о приложении")
+     * @param context контекст
+     */
+    public static void openAppDetailsActivity(final Context context) {
+        if (context == null) {
+            return;
+        }
+        final Intent i = new Intent();
+        i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        i.addCategory(Intent.CATEGORY_DEFAULT);
+        i.setData(Uri.parse("package:" + context.getPackageName()));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        if (i.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(i);
+        } else {
+            Toast.makeText(context, R.string.error_cant_open_app_settings, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public interface IntentNotFoundCallback {
         void onNotFound();
