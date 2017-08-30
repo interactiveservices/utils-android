@@ -25,8 +25,7 @@ public class IntentUtils {
      * @param context
      */
     public static void openAppInMarket(Context context) {
-        final String appPackageName = BuildConfig.APPLICATION_ID;
-        openAppInMarket(context, appPackageName);
+        openAppInMarket(context, context.getPackageName());
     }
 
     /**
