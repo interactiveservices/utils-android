@@ -7,6 +7,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.RawRes;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 
@@ -59,5 +60,8 @@ public final class ResUtils {
         return ContextCompat.getDrawable(context, id);
     }
 
+    public static String getRawPath(@NonNull Context context, @RawRes int resId){
+        return "android.resource://" + context.getPackageName() + "/" + resId;
+    }
 
 }

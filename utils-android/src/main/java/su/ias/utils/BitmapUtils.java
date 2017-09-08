@@ -14,12 +14,17 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * различные преобразования над картинками
  */
 
 public final class BitmapUtils {
+
+    public static final int DEFAULT_IMAGE_QUELITY = 90;
 
     public BitmapUtils() {
         throw new AssertionError();
@@ -110,6 +115,27 @@ public final class BitmapUtils {
         } else {
             throw new IllegalArgumentException("unsupported drawable type");
         }
+    }
+
+    /**
+     * Bitmap to base64 string
+     * @param bitmap image to encoded
+     * @return base64 string
+     */
+    public static String encodeToBase64(Bitmap bitmap) {
+       return encodeToBase64(bitmap, DEFAULT_IMAGE_QUELITY);
+    }
+
+    /**
+     * Bitmap to base64 string
+     * @param bitmap image to encoded
+     * @param quality image quality
+     * @return base64 string
+     */
+    public static String encodeToBase64(Bitmap bitmap, int quality){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 
 }

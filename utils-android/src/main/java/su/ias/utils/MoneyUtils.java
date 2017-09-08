@@ -6,8 +6,6 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class MoneyUtils {
 
@@ -41,7 +39,7 @@ public class MoneyUtils {
         if (cost == null) {
             return null;
         }
-        cost = (double)cost.intValue();
+        cost = (double) cost.intValue();
         return formatNumber(cost) + NBSP + RUBLE_SIGN;
     }
 
@@ -53,8 +51,9 @@ public class MoneyUtils {
     public static String formatNumber(@NonNull Double cost) {
 
         DecimalFormat myFormatter = new DecimalFormat("#,###.00");
-        if (cost % 1 == 0)
+        if (cost % 1 == 0) {
             myFormatter = new DecimalFormat("#,###");
+        }
         DecimalFormatSymbols formatSymbols = DecimalFormatSymbols.getInstance();
         formatSymbols.setDecimalSeparator(',');
         formatSymbols.setGroupingSeparator(' ');
