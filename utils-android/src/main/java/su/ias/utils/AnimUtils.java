@@ -13,6 +13,7 @@ import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.view.animation.Transformation;
 
@@ -350,6 +351,16 @@ public final class AnimUtils {
             return height;
         }
 
+    }
+
+    /**
+     * Shake animation
+     * @param context context
+     * @param v animated view
+     */
+    public static void shakeAnimate(Context context, View v){
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.shake);
+        v.startAnimation(animation);
     }
 
 }

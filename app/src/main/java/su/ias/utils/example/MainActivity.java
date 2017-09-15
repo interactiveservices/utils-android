@@ -3,6 +3,7 @@ package su.ias.utils.example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnDial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.dial(MainActivity.this, "+7 (495) 744 5500");
+                IntentUtils.dial(MainActivity.this, "+7 (495) 744 55 00");
             }
         });
 
@@ -54,5 +55,13 @@ public class MainActivity extends AppCompatActivity {
         final TextView txtCases = (TextView) findViewById(R.id.txt_cases);
         txtCases.setText(GrammarUtils.getMonthCaseByNumber(this, 27));
         AnimUtils.leftToRight(this, txtCases, 2000);
+
+        final Button shake = (Button) findViewById(R.id.shake);
+        shake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimUtils.shakeAnimate(MainActivity.this, shake);
+            }
+        });
     }
 }
