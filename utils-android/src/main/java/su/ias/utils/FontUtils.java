@@ -14,8 +14,8 @@ import java.util.Map;
 /**
  * Работа со шрифтами
  */
-
-public class FontUtils {
+@SuppressWarnings({"unused", "WeakerAccess"})
+public final class FontUtils {
 
     private final static Map<String, Typeface> fonts = new HashMap<>();
 
@@ -74,4 +74,13 @@ public class FontUtils {
         }
     }
 
+    /**
+     * insert type face in TextView
+     *
+     * @param textView add type face
+     * @param fontName custom font name from assets
+     */
+    public static void setTypeface(TextView textView, String fontName) {
+        textView.setTypeface(getFont(textView.getContext(), fontName));
+    }
 }
