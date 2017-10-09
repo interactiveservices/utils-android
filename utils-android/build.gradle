@@ -33,4 +33,5 @@ publish {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:exifinterface:25.3.1'
 }

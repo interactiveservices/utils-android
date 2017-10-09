@@ -2,6 +2,7 @@ package su.ias.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -13,6 +14,7 @@ import android.graphics.drawable.VectorDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.media.ExifInterface;
 import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 
@@ -136,6 +138,84 @@ public final class BitmapUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+    }
+
+    /**
+     * Поворачивает изображение в зависимости от поворота, которое задано в EXIF тегах
+     * @param fileName адрес файла изображения
+     * @return Bitmap с повернутым в нужную сторону изображением
+     */
+    public static Bitmap rotateImage(String fileName) {
+        Bitmap bitmap = BitmapFactory.decodeFile(fileName);
+        return rotateImage(bitmap, getImageRotationDegree(fileName));
+    }
+
+    /**
+     * Поворачивает bitmap в зависимости от поворота, заданного в EXIF тегах
+     * Использование: BitmapUtils.rotateImage(bitmap, BitmapUtils.getImageRotationDegree(fileName))
+     */
+    public static Bitmap rotateImage(Bitmap bitmap, int orientation) {
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_NORMAL:
+                return bitmap;
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                matrix.setScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                matrix.setRotate(180);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_TRANSPOSE:
+                matrix.setRotate(90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_TRANSVERSE:
+                matrix.setRotate(-90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                matrix.setRotate(-90);
+                break;
+            default:
+                return bitmap;
+        }
+        try {
+            Bitmap bmRotated = Bitmap.createBitmap(bitmap,
+                                                   0,
+                                                   0,
+                                                   bitmap.getWidth(),
+                                                   bitmap.getHeight(),
+                                                   matrix,
+                                                   true);
+            bitmap.recycle();
+            return bmRotated;
+        } catch (OutOfMemoryError e) {
+            return bitmap;
+        }
+    }
+
+    /**
+     * Получить поворот изображения из EXIF-тегов
+     * @param fileName имя файла, где записано изображение
+     * @return константа поворота из ExifInterface
+     */
+    public static int getImageRotationDegree(String fileName) {
+        try {
+            ExifInterface ei = new ExifInterface(fileName);
+
+            return ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                                      ExifInterface.ORIENTATION_UNDEFINED);
+
+        } catch (Exception e) {
+            return ExifInterface.ORIENTATION_NORMAL;
+        }
     }
 
 }
