@@ -73,7 +73,7 @@ public final class UiUtils {
      * показать клавиатуру
      *
      * @param context - контекст
-     * @param view    - view в фокусе
+     * @param view    - view в фокусе, requestFocus которой запрашивается
      */
     public static void showKeyboard(@Nullable Context context, @Nullable View view) {
         if (context != null) {
@@ -86,6 +86,7 @@ public final class UiUtils {
                 return;
             }
 
+            view.requestFocus();
             InputMethodManager inputMethodManager =
                     (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.toggleSoftInputFromWindow(view.getApplicationWindowToken(),

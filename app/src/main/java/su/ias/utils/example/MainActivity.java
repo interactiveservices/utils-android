@@ -3,23 +3,26 @@ package su.ias.utils.example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.AnimationUtils;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import su.ias.utils.AnimUtils;
 import su.ias.utils.GrammarUtils;
 import su.ias.utils.IntentUtils;
 import su.ias.utils.MoneyUtils;
+import su.ias.utils.UiUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String URL = "http://be-interactive.ru";
+    public static final String URL = "http://be-interactive.ru/mobile/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        UiUtils.setSoftInputMode(this, WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         final TextView txtDescription = (TextView) findViewById(R.id.txt_description);
         AnimUtils.alpha(txtDescription, 0f, 1f, 2000);
@@ -63,5 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 AnimUtils.shakeAnimate(MainActivity.this, shake);
             }
         });
+
+        final EditText editTextFocus = (EditText) findViewById(R.id.edit_text_focus);
+        UiUtils.showKeyboard(this, editTextFocus);
     }
 }
