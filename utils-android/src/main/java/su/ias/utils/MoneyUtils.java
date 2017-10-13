@@ -2,6 +2,7 @@ package su.ias.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -41,6 +42,21 @@ public class MoneyUtils {
         }
         cost = (double) cost.intValue();
         return formatNumber(cost) + NBSP + RUBLE_SIGN;
+    }
+
+    /**
+     * Формирует строку - unicode вида "{строка} ₽".
+     * Строку потом необходимо обрабатывать FontUtils.setupRubleSign для корректного отображения знака рубля
+     *
+     * @param cost строка, к которой нужно приставить знак рубля
+     * @return
+     */
+    @Nullable
+    public static String formatRubles(@Nullable String cost) {
+        if (TextUtils.isEmpty(cost)) {
+            return null;
+        }
+        return cost + NBSP + RUBLE_SIGN;
     }
 
     /**
