@@ -32,7 +32,7 @@ public class ValidateUtils {
      * @param cardNumber card number
      * @return true if card valid
      */
-    public static boolean validateCardNumner(String cardNumber) {
+    public static boolean validateCardNumber(String cardNumber) {
 
         if (TextUtils.isEmpty(cardNumber)) {
             return false;

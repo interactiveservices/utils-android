@@ -3,6 +3,8 @@ package su.ias.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
@@ -10,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 /**
  * Created on 6/28/17.
@@ -47,7 +50,6 @@ public final class ResUtils {
         return px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
-
     public static int getColor(@NonNull Context context, @ColorRes int id) {
         return ContextCompat.getColor(context, id);
     }
@@ -60,8 +62,23 @@ public final class ResUtils {
         return ContextCompat.getDrawable(context, id);
     }
 
-    public static String getRawPath(@NonNull Context context, @RawRes int resId){
+    public static String getRawPath(@NonNull Context context, @RawRes int resId) {
         return "android.resource://" + context.getPackageName() + "/" + resId;
+    }
+
+    /**
+     * get ColorInt from theme fro example get colorPrimary color
+     *
+     * @param context        Context to get theme
+     * @param attributeColor int id attribute (R.attr.colorPrimary)
+     * @return return ColorInt
+     */
+    @ColorInt
+    public static int getThemeColor(@NonNull final Context context,
+                                    @AttrRes final int attributeColor) {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(attributeColor, value, true);
+        return value.data;
     }
 
 }
