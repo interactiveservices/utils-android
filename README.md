@@ -7,19 +7,30 @@
 
 - `AnimUtils` - вращение, прозрачность, сжатие View;
 - `BitmapUtils` - полезные функции для работы c Bitmap;
+- `EncryptUtils` - md5, sha1, base64 стандартный набор для работы
 - `FontUtils` - функции для работы со шрифтами, Typeface и знаком рубля;
 - `GrammarUtils` - формирует строку для часто встречающихся случаев в нужном падеже, например "8 фотограф*ий*";
 - `IntentUtils` - для частых работ с Intent. Обрабатывает некорректные ситуации вроде отсутствия приложения для выполнения Intent;
 - `MoneyUtils` - работа с формированием строк для денежных сумм, например: "1 800 ₽"
-- `UiUtils` - работа с клавиатурой 
 - `ResUtils` - работа с ресурсами, преобразование dp в пиксели и обратно
+- `UiUtils` - работа с клавиатурой
 - `ValidateUtils` - проверка на валидность email и номера карты
-- `EncryptUtils` - md5, sha1, base64 стандартный набор для работы
+
 ## Подключение библиотеки
 
+Gradle plugin до 3.0.0
 ```groovy
 dependencies {
     ...
-    compile 'su.ias.components:utils-android:lastVersion'
+    compile 'su.ias.components:utils-android:1.0.15'
+    compile "com.android.support:exifinterface:$SupportVersion"
+}
+```
+Gradle plugin 3.0.0+
+```groovy
+dependencies {
+    ...
+    implementation 'su.ias.components:utils-android:1.0.15'
+    implementation "com.android.support:exifinterface:$SupportVersion"
 }
 ```
