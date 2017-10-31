@@ -22,7 +22,7 @@ Gradle plugin до 3.0.0
 ```groovy
 dependencies {
     ...
-    compile 'su.ias.components:utils-android:1.0.15'
+    compile "su.ias.components:utils-android:$lastVersion"
     compile "com.android.support:exifinterface:$SupportVersion"
 }
 ```
@@ -30,7 +30,7 @@ Gradle plugin 3.0.0+
 ```groovy
 dependencies {
     ...
-    implementation 'su.ias.components:utils-android:1.0.15'
+    implementation "su.ias.components:utils-android:$lastVersion"
     implementation "com.android.support:exifinterface:$SupportVersion"
 }
 ```
