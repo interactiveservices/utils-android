@@ -1,21 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 def version = '1.0.0'
-def SupportVersion = '25.3.1'
+def SupportVersion = '26.1.0'
 
 android {
     compileSdkVersion 26
-
-
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "$version"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -27,12 +23,17 @@ android {
 
 }
 
+publish {
+    groupId = 'su.ias.components'
+    artifactId = 'fragment-utils-android'
+    publishVersion = "$version"
+    repoName = 'maven'
+    desc = 'fragment utils for Android development'
+    licences = ['MIT']
+    website = 'https://github.com/interactiveservices/utils-android'
+}
+
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$SupportVersion"
     implementation "com.android.support:design:$SupportVersion"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
 }

@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 def version = '1.0.15'
-def support = '25.4.0'
+def support = '26.1.0'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 19
         versionName "$version"
     }
@@ -33,6 +33,6 @@ publish {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:$support"
-    compile "com.android.support:exifinterface:$support"
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:exifinterface:$support"
 }
