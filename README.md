@@ -43,7 +43,6 @@ dependencies {
 
 Простой пример замены фрагмента
 ```java
-
     new FragmentBuilde(R.id.container, new Fragment(), getSupportFragmentMamanger())
         .addStringArgument("title", "string params")
         .setAnimation(new SlideLeftToRight())
