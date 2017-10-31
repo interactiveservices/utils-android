@@ -1,5 +1,6 @@
 package su.ias.utils.example;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -69,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText editTextFocus = (EditText) findViewById(R.id.edit_text_focus);
         UiUtils.showKeyboard(this, editTextFocus);
+    }
+
+    public void openFragmentUtils(View view) {
+        startActivity(new Intent(this, FragmentActivity.class));
     }
 }

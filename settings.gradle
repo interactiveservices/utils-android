@@ -1,1 +1,1 @@
-include ':app', ':utils-android'
+include ':app', ':utils-android', ':fragment-utils'

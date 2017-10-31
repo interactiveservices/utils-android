@@ -34,3 +34,23 @@ dependencies {
     implementation "com.android.support:exifinterface:$SupportVersion"
 }
 ```
+## Fragment
+
+
+### FragmentBuilder
+
+небольшая билбиотека для облегчения работы с фрагментами, есть простые анимаци
+
+Простой пример замены фрагмента
+```java
+
+    new FragmentBuilde(R.id.container, new Fragment(), getSupportFragmentMamanger())
+        .addStringArgument("title", "string params")
+        .setAnimation(new SlideLeftToRight())
+        .addToBackStack(true)
+        .replace();
+
+```
+
+### FragmentUtils
+

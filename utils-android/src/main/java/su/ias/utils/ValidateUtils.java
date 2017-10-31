@@ -65,15 +65,15 @@ public class ValidateUtils {
     /**
      * Validate Card expire date
      * need string like 11/11
-     * @param date
-     * @return
+     * @param date string like 11/11
+     * @return true if string correct
      */
     public static boolean validateCardExpireDate(String date) {
         if (date.length() == 5) {
             DateFormat df = new SimpleDateFormat("MM/yy", Locale.getDefault());
             try {
                 Calendar checkDate = Calendar.getInstance();
-                checkDate.setTime(df.parse(date.toString()));
+                checkDate.setTime(df.parse(date));
                 Calendar now = Calendar.getInstance();
                 if (checkDate.get(Calendar.YEAR) < now.get(Calendar.YEAR)) {
                     return false;

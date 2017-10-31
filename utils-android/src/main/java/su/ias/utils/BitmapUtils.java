@@ -20,13 +20,13 @@ import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
 
+import su.ias.utils.constants.BitmapConstats;
+
 /**
  * различные преобразования над картинками
  */
 
 public final class BitmapUtils {
-
-    public static final int DEFAULT_IMAGE_QUELITY = 90;
 
     public BitmapUtils() {
         throw new AssertionError();
@@ -125,7 +125,7 @@ public final class BitmapUtils {
      * @return base64 string
      */
     public static String encodeToBase64(Bitmap bitmap) {
-       return encodeToBase64(bitmap, DEFAULT_IMAGE_QUELITY);
+       return encodeToBase64(bitmap, BitmapConstats.DEFAULT_QUALITY);
     }
 
     /**

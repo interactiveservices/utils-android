@@ -8,13 +8,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import su.ias.utils.constants.BitmapConstats;
+
 /**
  * Created on 10/6/17.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class EncryptUtils {
-
-    private static final int AVATAR_QUALITY = 70;
 
     public EncryptUtils() {
         throw new UnsupportedOperationException("Oooops!");
@@ -66,13 +66,19 @@ public final class EncryptUtils {
      * @return base64 string
      */
     public static String encodeToBase64(Bitmap image) {
-        return encodeToBase64(image, AVATAR_QUALITY);
+        return encodeToBase64(image, BitmapConstats.DEFAULT_QUALITY);
     }
 
-
+    /**
+     * create base64 string from bitmap
+     *
+     * @param image bitmap to create base64 string
+     * @param quality image quality to base64
+     * @return base64 string
+     */
     public static String encodeToBase64(Bitmap image, int quality) {
         if (quality < 0 || quality > 100) {
-            quality = AVATAR_QUALITY;
+            quality = BitmapConstats.DEFAULT_QUALITY;
         }
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, quality, stream);
