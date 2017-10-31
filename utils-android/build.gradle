@@ -1,19 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
-def version = '1.0.15'
-def support = '26.1.0'
-
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 19
-        versionName "$version"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,7 +23,7 @@ android {
 publish {
     groupId = 'su.ias.components'
     artifactId = 'utils-android'
-    publishVersion = "$version"
+    publishVersion = "${rootProject.ext.versionName}"
     repoName = 'maven'
     desc = 'utils for Android development'
     licences = ['MIT']
@@ -33,6 +31,6 @@ publish {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$support"
-    implementation "com.android.support:exifinterface:$support"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation "com.android.support:exifinterface:${rootProject.ext.supportLibraryVersion}"
 }
