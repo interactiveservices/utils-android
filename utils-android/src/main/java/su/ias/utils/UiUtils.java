@@ -175,7 +175,7 @@ public final class UiUtils {
     /**
      * Fetches accent color value of app (colorAccent in app's theme)
      *
-     * @param context context to get color
+     * @param context context to get color (context of activity or app)
      * @return color value
      */
     @ColorInt
@@ -191,7 +191,7 @@ public final class UiUtils {
     /**
      * Fetches primary color value of app (colorPrimary in app's theme)
      *
-     * @param context context to get color
+     * @param context context to get color (context of activity or app)
      * @return color value
      */
     @ColorInt
@@ -210,7 +210,7 @@ public final class UiUtils {
     /**
      * Fetches text appearance
      *
-     * @param context context to get text appearance (textAppearanceMedium)
+     * @param context context to get text appearance (textAppearanceMedium) (context of activity or app)
      * @return textAppearance
      */
     @StyleRes
