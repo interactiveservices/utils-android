@@ -2,12 +2,16 @@ package su.ias.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -166,5 +170,59 @@ public final class UiUtils {
         }
 
         return size;
+    }
+
+    /**
+     * Fetches accent color value of app (colorAccent in app's theme)
+     *
+     * @param context context to get color
+     * @return color value
+     */
+    @ColorInt
+    public static int fetchAccentColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+        TypedArray a =
+                context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
+        int color = a.getColor(0, ContextCompat.getColor(context, android.R.color.white));
+        a.recycle();
+        return color;
+    }
+
+    /**
+     * Fetches primary color value of app (colorPrimary in app's theme)
+     *
+     * @param context context to get color
+     * @return color value
+     */
+    @ColorInt
+    public static int fetchPrimaryColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+
+        TypedArray a =
+                context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorPrimary});
+        int color = a.getColor(0, ContextCompat.getColor(context, android.R.color.holo_blue_light));
+
+        a.recycle();
+
+        return color;
+    }
+
+    /**
+     * Fetches text appearance
+     *
+     * @param context context to get text appearance (textAppearanceMedium)
+     * @return textAppearance
+     */
+    @StyleRes
+    public static int fetchTextAppearance(Context context) {
+        TypedValue typedValue = new TypedValue();
+
+        TypedArray a = context.obtainStyledAttributes(typedValue.data,
+                                                      new int[]{android.R.attr.textAppearanceMedium});
+
+        int textAppearance = a.getResourceId(0, 0);
+        a.recycle();
+
+        return textAppearance;
     }
 }
